@@ -7,8 +7,7 @@ exports.handler = async (event, _, callback) => {
 
   try {
     const data = await handleRequest(requestBody)
-    console.log('No Error', { data })
-    callback(null, generateResponse({ data }, 200))
+    callback(null, generateResponse(data, 200))
   } catch (err) {
     if (err.errors) {
       const response = generateResponse({ error: 'Input error' }, 400)
