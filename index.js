@@ -3,10 +3,10 @@ const generateResponse = require('./lib/generateResponse')
 
 exports.handler = async (event, _, callback) => {
   const { body } = event
-  const request = JSON.parse(body)
+  const requestBody = body ? JSON.parse(body) : {}
 
   try {
-    const data = await handleRequest(request)
+    const data = await handleRequest(requestBody)
     callback(null, generateResponse({ data }, 200))
   } catch (err) {
     if (err.errors) {
